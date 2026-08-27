@@ -1,4 +1,4 @@
-# Debuggeada — Preguntados Ciber
+# Debuggeados — Preguntados Ciber
 
 Juego web Full Stack desarrollado individualmente como proyecto académico para Programación III.
 
