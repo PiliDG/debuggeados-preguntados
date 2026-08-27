@@ -1,10 +1,10 @@
-# Debuggeadas — Preguntados Ciber
+# Debuggeada — Preguntados Ciber
 
-Juego web interactivo desarrollado como proyecto académico para Programación III.
+Juego web Full Stack desarrollado individualmente como proyecto académico para Programación III.
 
-El objetivo fue crear una aplicación de preguntas y respuestas inspirada en juegos como Preguntados y Kahoot, aplicando conceptos de programación orientada a objetos, modularización, estructuras de datos, APIs REST y persistencia de información.
+Diseñé y desarrollé la aplicación completa, desde la lógica del juego y el backend hasta la interfaz web, la API REST, el sistema de preguntas, estadísticas y despliegue.
 
-> Proyecto académico desarrollado en equipo por Pilar y Delfina.
+El objetivo fue crear una aplicación interactiva de preguntas y respuestas inspirada en juegos como Preguntados y Kahoot, aplicando programación orientada a objetos, modularización, estructuras de datos, APIs REST y persistencia de información.
 
 ---
 
@@ -29,6 +29,28 @@ El objetivo fue crear una aplicación de preguntas y respuestas inspirada en jue
 
 ---
 
+## Mi desarrollo
+
+Desarrollé de forma integral:
+
+- Frontend con HTML, CSS y JavaScript.
+- Backend con Python y FastAPI.
+- Diseño e implementación de APIs REST.
+- Lógica principal del juego.
+- Sistema de jugadores y turnos.
+- Ruleta de categorías.
+- CRUD de preguntas.
+- Persistencia mediante archivos JSON.
+- Sistema de puntajes y estadísticas.
+- Programación orientada a objetos.
+- Modularización del backend.
+- Diseño de la interfaz.
+- Integración frontend-backend.
+- Control de versiones con Git y GitHub.
+- Preparación del proyecto para despliegue web.
+
+---
+
 ## Tecnologías
 
 **Frontend:** HTML, CSS, JavaScript  
@@ -44,16 +66,20 @@ El objetivo fue crear una aplicación de preguntas y respuestas inspirada en jue
 
 ## Funcionalidades principales
 
-- Gestión de jugadores.
+- Agregar y administrar jugadores.
+- Iniciar partidas.
 - Ruleta de categorías.
 - Sistema de turnos.
 - Preguntas con cuatro opciones.
 - Temporizador de respuesta.
+- Validación de respuestas.
 - Cálculo automático de puntajes.
 - Podio con los tres mejores jugadores.
-- Estadísticas por categoría y tiempos de respuesta.
+- Estadísticas de errores por categoría.
+- Estadísticas de tiempos de respuesta.
 - Administración de preguntas y categorías.
-- CRUD completo de preguntas.
+- CRUD completo del banco de preguntas.
+- Pantalla de instrucciones.
 
 ---
 
@@ -71,7 +97,7 @@ El juego incluye diferentes categorías relacionadas con contenidos de programac
 
 ## Arquitectura del proyecto
 
-El backend fue modularizado para separar responsabilidades:
+El backend se encuentra modularizado para separar responsabilidades:
 
 ```text
 backend/
