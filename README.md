@@ -1,62 +1,81 @@
-# Preguntados Ciber
+# Debuggeadas — Preguntados Ciber
 
+Juego web interactivo desarrollado como proyecto académico para Programación III.
+
+El objetivo fue crear una aplicación de preguntas y respuestas inspirada en juegos como Preguntados y Kahoot, aplicando conceptos de programación orientada a objetos, modularización, estructuras de datos, APIs REST y persistencia de información.
+
+> Proyecto académico desarrollado en equipo por Pilar y Delfina.
+
+---
+
+## Vista de la aplicación
+
+### Menú principal
+
+<img src="docs/screenshots/menu.png" alt="Menú principal de Debuggeadas" width="100%">
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Juego y ruleta de categorías</strong><br><br>
+      <img src="docs/screenshots/juego.png" alt="Ruleta de categorías">
+    </td>
+    <td width="50%">
+      <strong>Podio y estadísticas</strong><br><br>
+      <img src="docs/screenshots/podio.png" alt="Podio y estadísticas">
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Tecnologías
-- **Frontend**: HTML + CSS + JS vanilla (sin frameworks) con efectos neon.
-- **Backend**: FastAPI (Python) + almacenamiento JSON.
-- **Datos**: `data/questions.json`.
-- **Deploy**: Railway (1 servicio web que sirve API + archivos estáticos).
 
+**Frontend:** HTML, CSS, JavaScript  
+**Backend:** Python, FastAPI  
+**API:** REST  
+**Persistencia:** JSON  
+**Servidor:** Uvicorn  
+**Control de versiones:** Git, GitHub  
+**Entorno de desarrollo:** Visual Studio Code  
+**Deploy:** Railway
 
-## Requisitos de la cátedra cubiertos
-- Modularización: backend dividido en `models.py`, `storage.py`, `game.py`, `main.py`.
-- **Clases**: `BaseEntity` (abstracta), `Question`, `Category`, `Game`, `Player`.
-- **Herencia**: `Player` hereda de `BaseEntity` (abstracta).
-- **Encapsulamiento**: atributo privado en `Player` (`__score`).
-- **CRUD completo**: endpoints para crear/listar/actualizar/eliminar preguntas (clase principal `Question`).
-- **Módulos**: `json`, `re`, `collections.deque`, `requests` (mínimo 3).
-- **Interfaz gráfica**: frontend interactivo con ruleta y podio.
-- **Docstrings** en funciones y clases; comentarios.
+---
 
+## Funcionalidades principales
 
-## Instalar y correr en local
+- Gestión de jugadores.
+- Ruleta de categorías.
+- Sistema de turnos.
+- Preguntas con cuatro opciones.
+- Temporizador de respuesta.
+- Cálculo automático de puntajes.
+- Podio con los tres mejores jugadores.
+- Estadísticas por categoría y tiempos de respuesta.
+- Administración de preguntas y categorías.
+- CRUD completo de preguntas.
 
+---
 
-```bash
-# Requisitos: Python 3.10+ y pip
-python -m venv .venv
-source .venv/bin/activate # Windows: .venv\\Scripts\\activate
-pip install -r requirements.txt
+## Categorías
 
+El juego incluye diferentes categorías relacionadas con contenidos de programación:
 
-# Ejecutar backend (sirve también el frontend estático)
-uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-Abrí `http://localhost:8000` en el navegador.
+1. Colecciones y datos
+2. Lambda y funciones
+3. Archivos y excepciones
+4. JSON y APIs
+5. Recursividad y algoritmos
 
+---
 
-## Deploy en Railway (rápido)
-1. Subí este repo a GitHub.
-2. En [Railway](https://railway.app/) → New Project → Deploy from GitHub → elegí tu repo.
-3. Railway detecta `Procfile` y `requirements.txt`. Buildpack Python.
-4. Variables (opcional): ninguna obligatoria.
-5. Al terminar el deploy, abrí el dominio público. El frontend se sirve desde `/` y la API desde `/api/...`.
+## Arquitectura del proyecto
 
+El backend fue modularizado para separar responsabilidades:
 
-## Endpoints principales
-- `GET /api/categories` → categorías disponibles.
-- `GET /api/questions?category=Nombre` → preguntas por categoría.
-- `POST /api/answer` → valida respuesta, cuerpo: `{question_id, option_index}`.
-- CRUD de `Question`:
-- `GET /api/admin/questions`
-- `POST /api/admin/questions`
-- `PUT /api/admin/questions/{id}`
-- `DELETE /api/admin/questions/{id}`
-
-
-## Scripts útiles
-- Cargar preguntas iniciales: se hace automáticamente al primer arranque si no existe `data/questions.json`.
-
-
-## Licencia
-MIT
+```text
+backend/
+├── models.py
+├── storage.py
+├── game.py
+└── main.py
