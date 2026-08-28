@@ -481,7 +481,9 @@ body::after { right: -130px; bottom: 9%; border-radius: 50%; }
   position: relative;
   z-index: 9999;
   top: -8px;
-  font-size: clamp(3rem, 9vw, 5.2rem);
+  width: 100%;
+  text-align: center;
+  font-size: clamp(2.8rem, 7.5vw, 4.7rem);
   line-height: 1.12;
   overflow: visible;
   text-shadow: none !important;
