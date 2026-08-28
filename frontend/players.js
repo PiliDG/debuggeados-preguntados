@@ -148,6 +148,7 @@ function render() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: newName })
         });
+        p.id = newName;
         p.name = newName;
         nameSpan.textContent = newName;
         showToast("Jugador actualizado");

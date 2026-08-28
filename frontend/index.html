@@ -3,25 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DEBUGGEADAS</title>
+    <title>DEBUGGEADOS</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <div class="menu-container">
-      <header class="glow-title">Debuggeadas</header>
+    <main class="menu-container home-card">
+      <header class="brand-lockup">
+        <h1 class="glow-title">Debuggeados</h1>
+      </header>
+      <p class="home-tagline">Jugá, ganá y hacé historia</p>
 
-      <main class="menu">
-        <button class="btn-menu" id="btn-add-players">Agregar y administrar jugadores</button>
-        <button class="btn-menu" id="btn-start-game">Iniciar juego</button>
-        <button class="btn-menu" id="btn-podium">Ver podio</button>
-        <button class="btn-menu" id="btn-instructions">Instrucciones</button>
-        <button class="btn-menu" id="btn-admin-questions">Editar preguntas y categorí­as</button>
+      <main class="menu" aria-label="Menú principal">
+        <button class="btn-menu btn-menu--primary" id="btn-start-game" disabled aria-describedby="msg-no-players"><span class="menu-icon">▶</span> Jugar ahora</button>
+        <div class="menu-grid">
+          <button class="btn-menu btn-menu--secondary" id="btn-add-players"><span class="menu-icon">♙</span> Jugadores</button>
+          <button class="btn-menu btn-menu--secondary" id="btn-podium"><span class="menu-icon">♛</span> Podio</button>
+          <button class="btn-menu btn-menu--secondary" id="btn-admin-questions"><span class="menu-icon">✎</span> Preguntas</button>
+          <button class="btn-menu btn-menu--secondary" id="btn-instructions"><span class="menu-icon">?</span> Cómo jugar</button>
+        </div>
       </main>
 
-      <footer>🩷 Gracias por jugar 🩷</footer>
-    </div>
+      <section id="msg-no-players" class="empty-players" hidden aria-live="polite">
+        <p>Primero agregá al menos un jugador para comenzar la partida.</p>
+        <a class="btn btn-small" href="/static/add_players.html">Agregar jugador</a>
+      </section>
 
-    <script src="/static/menu.js"></script>
+      <footer>Una partida, muchas formas de aprender</footer>
+    </main>
+
+    <script src="/static/menu.js?v=2"></script>
   </body>
   </html>
 

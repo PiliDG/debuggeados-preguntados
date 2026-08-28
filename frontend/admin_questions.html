@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <div class="menu-container" style="max-width:980px; width:95%; padding-bottom:30px">
-      <h1 class="glow-title">Preguntas & Categorías</h1>
-      <p class="muted" style="margin-top:-8px; opacity:.9">Administrar el contenido del juego</p>
+    <main class="page-shell page-shell--xl">
+      <section class="panel-card admin-shell">
+      <header class="page-header">
+        <p class="eyebrow">Editor de contenido</p>
+        <h1 class="glow-title">Preguntas &amp; Categorías</h1>
+        <p class="muted">Mantené el banco de preguntas listo para la próxima partida.</p>
+      </header>
 
       <!-- Selector de categoría -->
-      <section style="margin-top:10px">
-        <label for="categoriaSelect" style="display:block; margin-bottom:6px">Categoría</label>
-        <div style="display:flex; gap:10px; align-items:center">
+      <section class="admin-section">
+        <label class="field-label" for="categoriaSelect">Categoría activa</label>
+        <div class="category-picker">
           <select
             id="categoriaSelect"
             style="flex:1; padding:10px; border-radius:10px; background:rgba(0,0,0,.25); color:#fff; border:1px solid rgba(255,255,255,.15)"
@@ -23,13 +27,13 @@
       </section>
 
       <!-- Listado de preguntas -->
-      <section style="margin-top:18px">
+      <section class="admin-section">
         <h2 class="section-title">Preguntas de la categoría</h2>
         <ul id="listaPreguntas" class="list"></ul>
       </section>
 
       <!-- Formulario agregar / editar pregunta -->
-      <section style="margin-top:18px">
+      <section class="admin-section">
         <h2 class="section-title">Agregar / Editar pregunta</h2>
         <form id="formPregunta" autocomplete="off">
           <input
@@ -81,7 +85,8 @@
       <a href="/static/index.html" class="btn-menu btn-volver">Volver al menú</a>
 
       <div id="toast" class="toast"></div>
-    </div>
+      </section>
+    </main>
 
     <dialog id="modalEliminarPregunta" class="dialog">
       <h2 class="section-title">¿Seguro que querés eliminar esta pregunta?</h2>
@@ -92,6 +97,6 @@
       </div>
     </dialog>
 
-    <script src="/static/admin_questions_local.js"></script>
+    <script src="/static/admin_questions_api.js"></script>
   </body>
 </html>

@@ -386,6 +386,31 @@ async function cargarJugadores() {
   }
 }
 
+async function cargarPregunta(categoria) {
+  const res = await fetch(`/api/questions?category=${encodeURIComponent(categoria)}`);
+  if (!res.ok) throw new Error("No se pudieron cargar preguntas");
+  const preguntas = await res.json();
+  if (!preguntas.length) return null;
+  const pregunta = preguntas[Math.floor(Math.random() * preguntas.length)];
+  return {
+    ...pregunta,
+    texto: pregunta.text,
+    opciones: pregunta.options,
+    respuesta: pregunta.answer_index,
+  };
+}
+
+async function cargarCategoriasServidor() {
+  const res = await fetch("/api/categories");
+  if (!res.ok) throw new Error("No se pudieron cargar categorías");
+  const nombres = await res.json();
+  state.categoriasOrden = Array.isArray(nombres) ? nombres : [];
+  state.sectores = state.categoriasOrden.map((nombre, index) => ({
+    nombre,
+    color: state.colores[index % state.colores.length],
+  }));
+}
+
 function actualizarTurnoTexto() {
   const el = document.getElementById("turnoTexto");
   if (!el) return;
@@ -445,12 +470,18 @@ function tirarRuleta() {
     }
 
     // tras unos segundos, pasar a la pantalla de la pregunta
-    setTimeout(() => {
+    setTimeout(async () => {
       if (overlay) {
         overlay.classList.add("hidden");
       }
 
-      const hayPregunta = mostrarPregunta(cat);
+      let pregunta = null;
+      try {
+        pregunta = await cargarPregunta(cat);
+      } catch (error) {
+        console.error("Error cargando pregunta", error);
+      }
+      const hayPregunta = mostrarPregunta(cat, pregunta);
       if (!hayPregunta) {
         if (btn) btn.disabled = false;
         return;
@@ -467,9 +498,8 @@ function tirarRuleta() {
   }, 1800);
 }
 
-function mostrarPregunta(categoria) {
-  const lista = bancoPreguntas[categoria] || [];
-  if (lista.length === 0) {
+function mostrarPregunta(categoria, pregunta) {
+  if (!pregunta) {
     const etiquetaCat = document.getElementById("categoriaElegida");
     if (etiquetaCat) {
       etiquetaCat.textContent = `Categoría: ${categoria} (sin preguntas)`;
@@ -478,7 +508,7 @@ function mostrarPregunta(categoria) {
     return false;
   }
 
-  const q = lista[Math.floor(Math.random() * lista.length)];
+  const q = pregunta;
   state.preguntaActual = q;
 
   const texto = document.getElementById("textoPregunta");
@@ -536,17 +566,18 @@ async function registrarRespuestaEnServidor({
   tiempoLimite,
 }) {
   try {
-    await fetch("/api/answer", {
+    const response = await fetch("/api/answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         player_name: playerName,
-        categoria,
-        correcta: esCorrecta,
+        question_id: state.preguntaActual.id,
+        option_index: state.preguntaActual.selectedOption,
         tiempo_respuesta: tiempoRespuesta,
         tiempo_limite: tiempoLimite,
       }),
     });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
   } catch (e) {
     console.error("Error al registrar respuesta en el servidor", e);
   }
@@ -588,6 +619,7 @@ function evaluarRespuesta(indice) {
   }
 
   if (jugadorActual) {
+    state.preguntaActual.selectedOption = indice === -1 ? 0 : indice;
     registrarRespuestaEnServidor({
       playerName: jugadorActual,
       categoria: categoriaActual,
@@ -642,11 +674,15 @@ function salirAlMenu() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  cargarBancoPreguntasDesdeStorage();
-  // preparar colores y lista de categorías
-  state.categoriasOrden = Object.keys(bancoPreguntas);
+  try {
+    await cargarCategoriasServidor();
+  } catch (error) {
+    console.error("Error cargando categorías", error);
+    mostrarMensajeSinJugadores();
+    return;
+  }
 
-  const seg = 360 / state.categoriasOrden.length;
+  const seg = 360 / Math.max(state.categoriasOrden.length, 1);
   const parts = state.categoriasOrden.map(
     (_, i) =>
       `${state.colores[i % state.colores.length]} ${Math.floor(

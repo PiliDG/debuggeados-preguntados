@@ -108,8 +108,11 @@
     </style>
   </head>
   <body>
-    <div class="menu-container" style="max-width:920px; width:95%">
-      <h1 class="glow-title">Juego</h1>
+    <main class="menu-container game-shell">
+      <header class="game-header">
+        <div class="brand-inline"><span class="brand-badge" aria-hidden="true">?</span><span>Debuggeadas</span></div>
+        <div class="turn-pill" id="turnoTexto">Turno de: -</div>
+      </header>
 
       <div id="mensajeSinJugadores" class="question-card center hidden">
         <p>Debés agregar al menos un jugador para iniciar el juego.</p>
@@ -117,10 +120,6 @@
       </div>
 
       <div id="pantalla-juego" class="hidden">
-        <div class="center" style="margin-bottom:8px">
-          <strong id="turnoTexto">Turno de: -</strong>
-        </div>
-
         <!-- Pantalla ruleta -->
         <section id="pantalla-ruleta" class="game-grid">
           <div class="center">
@@ -151,12 +150,12 @@
         </section>
       </div>
 
-      <div class="actions center" style="margin-top:16px">
+      <div class="actions center game-footer">
         <a href="/static/index.html" id="btnVolverMenu" class="btn-menu btn-volver">Volver al menú</a>
       </div>
-    </div>
+    </main>
 
-    <script src="/static/game.js"></script>
+    <script src="/static/game.js?v=2"></script>
   </body>
 </html>
 

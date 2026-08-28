@@ -3,34 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Debuggeadas - Administrar jugadores</title>
+    <title>Debuggeados - Administrar jugadores</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <div class="menu-container" style="max-width:720px; width:92%">
-      <h1 class="glow-title">Administrar jugadores</h1>
-      <p class="muted" style="margin:-6px 0 14px; opacity:.9">Capacidad máxima: 20 usuarios únicos.</p>
+    <main class="page-shell page-shell--sm">
+      <section class="panel-card panel-card--tight">
+        <header class="page-header">
+          <p class="eyebrow">Lobby</p>
+          <h1 class="glow-title">Administrar jugadores</h1>
+          <p class="muted">Capacidad máxima: 20 usuarios únicos.</p>
+        </header>
 
-      <form id="player-form" autocomplete="off" style="margin-top:10px">
-        <input
-          id="player-name"
-          type="text"
-          placeholder="Nombre del jugador"
-          maxlength="30"
-          aria-label="Nombre del jugador"
-          style="width:100%; background:rgba(0,0,0,.25); color:#fff; border:1px solid rgba(255,255,255,.25); border-radius:12px; padding:12px 14px; font-size:1rem; box-sizing:border-box;"
-        />
-        <button id="btn-add" type="submit" class="btn-menu" style="margin-top:12px">Agregar</button>
-      </form>
+        <form id="player-form" class="stack stack--sm" autocomplete="off">
+          <label class="field-label" for="player-name">Nombre del jugador</label>
+          <input
+            id="player-name"
+            type="text"
+            placeholder="Ej: Pilar"
+            maxlength="30"
+            aria-label="Nombre del jugador"
+          />
+          <button id="btn-add" type="submit" class="btn-menu">Agregar</button>
+        </form>
 
-      <ul id="players-list" class="list" style="margin-top:14px"></ul>
+        <ul id="players-list" class="list player-list"></ul>
 
-      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-      <a href="/static/index.html" class="btn-menu btn-volver">Volver al menú</a>
-    </div>
+        <a href="/static/index.html" class="btn-menu btn-volver">Volver al menú</a>
+      </section>
+    </main>
 
     <script src="/static/players.js"></script>
-  </body>
-  </html>
-
