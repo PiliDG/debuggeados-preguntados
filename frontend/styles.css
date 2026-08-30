@@ -444,8 +444,9 @@ body::after { right: -130px; bottom: 9%; border-radius: 50%; }
 }
 
 .home-card {
-  max-width: 520px;
-  padding: clamp(34px, 7vw, 66px) clamp(24px, 6vw, 58px) 42px;
+  width: min(92vw, 680px);
+  max-width: 680px;
+  padding: clamp(34px, 5vw, 56px) clamp(32px, 5vw, 58px) 42px;
 }
 
 .brand-lockup {
@@ -483,7 +484,7 @@ body::after { right: -130px; bottom: 9%; border-radius: 50%; }
   top: -8px;
   width: 100%;
   text-align: center;
-  font-size: clamp(2.8rem, 7.5vw, 4.7rem);
+  font-size: clamp(3rem, 7vw, 4.8rem);
   line-height: 1.12;
   overflow: visible;
   text-shadow: none !important;
