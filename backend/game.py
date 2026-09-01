@@ -65,7 +65,6 @@ class Game:
             player.add_points(PUNTOS_CORRECTA)
             player.correct += 1
         else:
-            player.lose_points(2)
             player.wrong += 1
             if categoria:
                 self.errors_by_category[categoria] += 1
@@ -130,7 +129,6 @@ class Game:
             player.add_points(PUNTOS_CORRECTA)
             player.correct += 1
         else:
-            player.lose_points(2)
             player.wrong += 1
             if categoria:
                 self.errors_by_category[categoria] += 1

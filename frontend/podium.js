@@ -14,7 +14,6 @@ async function cargarPodioYEstadisticas() {
 
     return { jugadores, estadisticas };
   } catch {
-    // Fallback estático si el backend no responde
     return {
       jugadores: [
         { nombre: "Pilar", puntos: 8737 },
@@ -44,9 +43,7 @@ function mostrarPodio(jugadores) {
   if (!el) return;
   el.innerHTML = "";
 
-  const ordenados = [...jugadores].sort(
-    (a, b) => (b.puntos || 0) - (a.puntos || 0)
-  );
+  const ordenados = [...jugadores].sort((a, b) => (b.puntos || 0) - (a.puntos || 0));
   const top = ordenados.slice(0, 3);
   while (top.length < 3) top.push(null);
 
@@ -56,29 +53,29 @@ function mostrarPodio(jugadores) {
     { idx: 2, clasePed: "p3", label: "3" },
   ];
 
-  slots.forEach((s) => {
-    const data = top[s.idx];
+  slots.forEach((slot) => {
+    const data = top[slot.idx];
     const col = document.createElement("div");
     col.className = "podio-col";
 
     const nombre = document.createElement("div");
-    nombre.className = "nombre";
+    nombre.className = "podio-name";
     nombre.textContent = data ? data.nombre : "—";
 
     const pts = document.createElement("div");
-    pts.className = "puntos";
+    pts.className = "podio-score";
     pts.textContent = data ? `${data.puntos} pts` : "";
 
     const ped = document.createElement("div");
-    ped.className = `pedestal ${s.clasePed}`;
-    ped.textContent = s.label;
+    ped.className = `pedestal ${slot.clasePed}`;
+    ped.textContent = slot.label;
 
     col.append(nombre, pts, ped);
     el.appendChild(col);
   });
 }
 
-function renderizarEstadisticas(estadisticas) {
+function renderizarEstadisticas(estadisticas, jugadores) {
   const errores = estadisticas.errores_por_categoria || {};
   const tiempos = estadisticas.tiempos_respuesta || {
     agil: 0,
@@ -86,7 +83,6 @@ function renderizarEstadisticas(estadisticas) {
     tarde: 0,
   };
 
-  // Errores por categoría
   const listaErrores = document.getElementById("lista-errores");
   if (listaErrores) {
     listaErrores.innerHTML = "";
@@ -98,35 +94,45 @@ function renderizarEstadisticas(estadisticas) {
     } else {
       entries.forEach(([cat, val]) => {
         const li = document.createElement("li");
-        li.textContent = `${cat} (${val})`;
+        li.textContent = `${cat}: ${val}`;
         listaErrores.appendChild(li);
       });
     }
   }
 
-  // Tiempo de respuesta
   const listaTiempos = document.getElementById("lista-tiempos");
   if (listaTiempos) {
     listaTiempos.innerHTML = "";
     const items = [
-      {
-        label: "Ágil (0–5 s)",
-        valor: tiempos.agil || 0,
-      },
-      {
-        label: "Promedio (5 s – fin)",
-        valor: tiempos.promedio || 0,
-      },
-      {
-        label: "Tarde (tiempo agotado)",
-        valor: tiempos.tarde || 0,
-      },
+      { label: "Ágil (0–5 s)", valor: tiempos.agil || 0 },
+      { label: "Promedio", valor: tiempos.promedio || 0 },
+      { label: "Tarde", valor: tiempos.tarde || 0 },
     ];
 
-    items.forEach((it) => {
+    items.forEach((item) => {
       const li = document.createElement("li");
-      li.textContent = `${it.label}: ${it.valor} respuestas`;
+      li.textContent = `${item.label}: ${item.valor}`;
       listaTiempos.appendChild(li);
+    });
+  }
+
+  const listaCampeones = document.getElementById("lista-campeones");
+  if (listaCampeones) {
+    listaCampeones.innerHTML = "";
+    const top = [...jugadores]
+      .sort((a, b) => (b.puntos || 0) - (a.puntos || 0))
+      .slice(0, 3);
+    if (top.length === 0) {
+      const li = document.createElement("li");
+      li.textContent = "Sin resultados";
+      listaCampeones.appendChild(li);
+      return;
+    }
+
+    top.forEach((player, index) => {
+      const li = document.createElement("li");
+      li.textContent = `${index + 1}. ${player.nombre}`;
+      listaCampeones.appendChild(li);
     });
   }
 }
@@ -134,6 +140,6 @@ function renderizarEstadisticas(estadisticas) {
 document.addEventListener("DOMContentLoaded", async () => {
   const { jugadores, estadisticas } = await cargarPodioYEstadisticas();
   mostrarPodio(jugadores);
-  renderizarEstadisticas(estadisticas);
+  renderizarEstadisticas(estadisticas, jugadores);
 });
 

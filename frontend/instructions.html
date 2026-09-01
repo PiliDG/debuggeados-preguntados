@@ -5,62 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Debuggeadas — Instrucciones</title>
     <link rel="stylesheet" href="/static/styles.css" />
-    <style>
-      /* Quitar viñetas/números solo en esta página */
-      .menu-container ul,
-      .menu-container ol { list-style: none; padding-left: 0; margin-left: 0; }
-    </style>
   </head>
   <body>
-    <div class="menu-container" style="max-width:720px; width:90%">
-      <h1 class="glow-title">Instrucciones</h1>
+    <main class="page-shell page-shell--md">
+      <section class="panel-card">
+        <header class="page-header">
+          <p class="eyebrow">Cómo jugar</p>
+          <h1 class="glow-title">Instrucciones</h1>
+        </header>
 
-      <h3>🎮 ¿Qué es Debuggeadas?</h3>
-      <p>Debuggeadas es un juego de preguntas y respuestas al estilo “Preguntados”, diseñado para competir en modo individual o entre amigos. El objetivo es sumar puntos respondiendo correctamente la mayor cantidad de preguntas de distintas categorías.</p>
+        <div class="info-stack">
+          <article class="info-block">
+            <h3>🎮 ¿Qué es Debuggeadas?</h3>
+            <p>Debuggeadas es un juego de preguntas y respuestas al estilo “Preguntados”, diseñado para competir de forma individual o entre amigos. El objetivo es sumar puntos respondiendo correctamente preguntas de distintas categorías.</p>
+          </article>
 
-      <h3>👥 Jugadores</h3>
-      <ul>
-        <li>Podés agregar entre 1 y 20 jugadores.</li>
-        <li>Los jugadores pueden editarse y eliminarse antes de jugar.</li>
-        <li>Debe haber al menos un jugador para iniciar una partida.</li>
-      </ul>
+          <article class="info-block">
+            <h3>👥 Jugadores</h3>
+            <ul>
+              <li>Podés agregar entre 1 y 20 jugadores.</li>
+              <li>Los jugadores pueden editarse y eliminarse antes de jugar.</li>
+              <li>Debe haber al menos un jugador para iniciar una partida.</li>
+            </ul>
+          </article>
 
-      <h3>❓ Cómo se juega</h3>
-      <ul>
-        <li>Desde el menú, seleccioná Iniciar juego.</li>
-        <li>Girás la ruleta para obtener una categoría aleatoria.</li>
-        <li>Contás con 15 segundos para responder una pregunta de cuatro opciones.</li>
-        <li>Elegí la respuesta antes de que el tiempo termine.</li>
-      </ul>
+          <article class="info-block">
+            <h3>❓ Cómo se juega</h3>
+            <ul>
+              <li>Desde el menú, seleccioná “Iniciar juego”.</li>
+              <li>Girás la ruleta para obtener una categoría aleatoria.</li>
+              <li>Contás con 15 segundos para responder una pregunta de cuatro opciones.</li>
+              <li>Elegí la respuesta antes de que el tiempo termine.</li>
+            </ul>
+          </article>
 
-      <h3>👾 Sistema de puntuación</h3>
-      <ul>
-        <li>Respuesta correcta: +10 puntos.</li>
-        <li>Respuesta incorrecta o tiempo agotado: 0 puntos.</li>
-      </ul>
-      <p>Cada jugador responde una pregunta por turno.</p>
+          <article class="info-block">
+            <h3>👾 Sistema de puntuación</h3>
+            <ul>
+              <li>Respuesta correcta: +10 puntos.</li>
+              <li>Respuesta incorrecta o tiempo agotado: 0 puntos.</li>
+            </ul>
+            <p class="muted">Cada jugador responde en su turno.</p>
+          </article>
 
-      <h3>🏁 Fin del juego</h3>
-      <p>El juego finaliza cuando se acaban las preguntas de una categoría o el jugador decide volver al menú. Luego podés ver el podio con nombre, puntaje, aciertos y errores.</p>
+          <article class="info-block">
+            <h3>🏁 Fin del juego</h3>
+            <p>La partida termina cuando se cumplen las preguntas de la ronda o el jugador decide volver al menú. Luego podés ver el podio con nombre, puntaje, aciertos y errores.</p>
+          </article>
 
-      <h3>🎲 Categorías disponibles</h3>
-      <ul>
-        <li>Colecciones y datos</li>
-        <li>Lambda y funciones</li>
-        <li>Archivos y Excepciones</li>
-        <li>JSON y APIs</li>
-        <li>Recursividad y Algoritmos</li>
-      </ul>
+          <article class="info-block">
+            <h3>🎲 Categorías disponibles</h3>
+            <ul>
+              <li>Colecciones y datos</li>
+              <li>Lambda y funciones</li>
+              <li>Archivos y Excepciones</li>
+              <li>JSON y APIs</li>
+              <li>Recursividad y Algoritmos</li>
+            </ul>
+          </article>
+        </div>
 
-      <h3>👁️‍🗨️ Consejos</h3>
-      <ul>
-        <li>Leé bien la consigna antes de responder.</li>
-        <li>Algunas preguntas pueden tener trampitas conceptuales.</li>
-        <li>Podés editar tus preguntas y agregar más desde el menú.</li>
-      </ul>
-
-      <a href="/static/index.html" class="btn-menu btn-volver">Volver al menú</a>
-    </div>
-  </body>
-  </html>
-
+        <a href="/static/index.html" class="btn-menu btn-volver">Volver al menú</a>
+      </section>
+    </main>
